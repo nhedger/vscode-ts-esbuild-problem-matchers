@@ -47,7 +47,7 @@
                 "severity": "error",
                 "pattern": [
                     {
-                        "regexp": "^\\s*\\[ERROR\\] (.+)$",
+                        "regexp": "^\\s*✘\\s*\\[ERROR\\]\\s*(.+)$",
                         "message": 1
                     },
                     {
