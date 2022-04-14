@@ -1,0 +1,83 @@
+{
+    "name": "ts-esbuild-problem-matchers",
+    "displayName": "TypeScript esbuild problem matchers",
+    "version": "0.1.0",
+    "description": "Problem matchers for TypeScript projects using esbuild",
+    "scripts": {
+        "package": "vsce package",
+        "publish": "vsce publish",
+        "pre-release": "vsce publish --pre-release"
+    },
+    "keywords": [
+        "typescript",
+        "esbuild",
+        "problem-matcher"
+    ],
+    "author": {
+        "name": "Nicolas Hedger",
+        "email": "nicolas@hedger.ch"
+    },
+    "publisher": "nhedger",
+    "homepage": "https://github.com/nhedger/vscode-ts-esbuild-problem-matchers",
+    "bugs": {
+        "url": "https://github.com/nhedger/vscode-ts-esbuild-problem-matchers/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nhedger/vscode-ts-esbuild-problem-matchers.git"
+    },
+    "engines": {
+        "vscode": "^1.66.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "license": "MIT",
+    "contributes": {
+        "problemMatchers": [
+            {
+                "name": "ts-esbuild",
+                "owner": "typescript",
+                "source": "ts",
+                "applyTo": "closedDocuments",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ],
+                "severity": "error",
+                "pattern": [
+                    {
+                        "regexp": "^\\s*\\[ERROR\\] (.+)$",
+                        "message": 1
+                    },
+                    {
+                        "regexp": "^\\s*$"
+                    },
+                    {
+                        "regexp": "^\\s*(.+):(\\d+):(\\d+):$",
+                        "file": 1,
+                        "line": 2,
+                        "column": 3
+                    }
+                ]
+            },
+            {
+                "name": "ts-esbuild-watch",
+                "base": "$ts-esbuild",
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": {
+                        "regexp": "\\s*\\[watch\\] build started"
+                    },
+                    "endsPattern": {
+                        "regexp": "^\\s*\\[watch\\] build finished"
+                    }
+                }
+            }
+        ]
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.66.0",
+        "vsce": "^2.7.0"
+    }
+}
